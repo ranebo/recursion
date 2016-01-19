@@ -13,7 +13,7 @@ var stringifyJSON = function(obj) {
     var arr = [];
 
     _.each(obj, function(item, i){
-      (typeof obj === "function" || obj === undefined) ? arr.push('null') : arr.push(stringifyJSON(item));
+      arr.push(stringifyJSON(item));
     });
 
     return '['+ arr + ']';
@@ -27,16 +27,12 @@ var stringifyJSON = function(obj) {
         objArr.push(stringifyJSON(key) + ':' + stringifyJSON(value));
       }
     });
+
     return '{' + objArr + '}';
   }
 
-
-  else if (typeof obj === "string") {
-    return '"' + obj + '"';
-  }
-
   else {
-    return _.identity(obj) + "";
+    return typeof obj === "string" ? '"' + obj + '"' : _.identity(obj) + ""
   }
 
 };
