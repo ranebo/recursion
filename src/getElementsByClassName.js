@@ -10,7 +10,7 @@ var getElementsByClassName = function(className) {
     _.each(obj.childNodes, function(node) {
       recurse(node);
     });
-  }
+  };
 
   recurse(document.body);
   return elements;
